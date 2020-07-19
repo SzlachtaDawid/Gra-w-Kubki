@@ -6,39 +6,40 @@ const boxes = [...document.querySelectorAll('div.box')]
 const board = [1, 2, 3]
 const divwin = document.querySelector('div.win')
 const divlose = document.querySelector('div.lose')
-const kubek1 = document.querySelector('div.kubek1')
-const kubek2 = document.querySelector('div.kubek2')
-const kubek3 = document.querySelector('div.kubek3')
+const cup1 = document.querySelector('div.kubek1')
+const cup2 = document.querySelector('div.kubek2')
+const cup3 = document.querySelector('div.kubek3')
 let win = 0
 let lose = 0
 let GameIsActive = false
 let btnStartActive = true
-let btnResetActive = true
+let btnResetActive = false
+let cupActive = false
 
 
 function pick() {
-    if (lock) {
-        document.querySelector('div.kubek1').classList.add('up')
-        document.querySelector('div.kubek2').classList.add('up')
-        document.querySelector('div.kubek3').classList.add('up')
+    if (cupActive) {
+        cup1.classList.add('up')
+        cup2.classList.add('up')
+        cup3.classList.add('up')
         const now = this.dataset.now
-        const pc = Math.floor(Math.random() * 3)
-        const pccc = board[pc]
+        const drawNumber = Math.floor(Math.random() * 3)
+        const boardIndex = board[drawNumber]
         console.log(now)
-        console.log(pccc)
-        if (pccc === 1) {
+        console.log(boardIndex)
+        if (boardIndex === 1) {
             ball.style.left = '15%'
-        } else if (pccc === 2) {
+        } else if (boardIndex === 2) {
             ball.style.left = '48%'
         } else {
             ball.style.left = "80%"
         }
-        if (now === pccc) {
+        if (now == boardIndex) {
             console.log('WYGRAŁEŚ')
             text.textContent = 'WYGRAŁEŚ'
             text.style.color = 'blue'
             divwin.textContent = 'Wygrałeś:' + ++win
-            lock = !lock
+            cupActive = !cupActive
             btnStartActive = false
             btnResetActive = !btnResetActive
         } else {
@@ -46,50 +47,50 @@ function pick() {
             text.textContent = 'PRZEGRAŁEŚ'
             text.style.color = 'red'
             divlose.textContent = 'Przegrałeś:' + ++lose
-            lock = !lock
+            cupActive = !cupActive
             btnStartActive = false
             btnResetActive = !btnResetActive
         }
     }
 }
 
-function buttonclick() {
+function buttonStart() {
     if (btnStartActive = btnStartActive) {
         text.textContent = ''
         ball.style.left = '48%'
-        kubek1.classList.remove('up')
-        kubek2.classList.remove('up')
-        kubek3.classList.remove('up')
-        kubek1.classList.toggle('down')
-        kubek1.classList.toggle('action1')
-        kubek2.classList.toggle('down')
-        kubek3.classList.toggle('down')
-        kubek3.classList.toggle('action3')
-        lock = true
+        cup1.classList.remove('up')
+        cup2.classList.remove('up')
+        cup3.classList.remove('up')
+        cup1.classList.toggle('down')
+        cup1.classList.toggle('action1')
+        cup2.classList.toggle('down')
+        cup3.classList.toggle('down')
+        cup3.classList.toggle('action3')
+        cupActive = true
         btnResetActive = false
         btnStartActive = false
     }
 }
 
-function reset() {
+function buttonReset() {
     if (btnResetActive) {
         text.textContent = ''
         ball.style.left = '48%'
-        kubek1.classList.remove('up')
-        kubek2.classList.remove('up')
-        kubek3.classList.remove('up')
-        kubek1.classList.toggle('down')
-        kubek1.classList.toggle('action1')
-        kubek2.classList.toggle('down')
-        kubek3.classList.toggle('down')
-        kubek3.classList.toggle('action3')
+        cup1.classList.remove('up')
+        cup2.classList.remove('up')
+        cup3.classList.remove('up')
+        cup1.classList.toggle('down')
+        cup1.classList.toggle('action1')
+        cup2.classList.toggle('down')
+        cup3.classList.toggle('down')
+        cup3.classList.toggle('action3')
         btnStartActive = true
         btnResetActive = !btnResetActive
     }
 }
 
 btnstart.addEventListener('click', function () {
-    btnstart.addEventListener('click', buttonclick)
+    btnstart.addEventListener('click', buttonStart)
     boxes.forEach(box => box.addEventListener('click', pick))
-    btnreset.addEventListener('click', reset)
+    btnreset.addEventListener('click', buttonReset)
 })
