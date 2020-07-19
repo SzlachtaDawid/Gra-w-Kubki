@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="instrukcja">
+        <p>1.Dwukrotnie kliknij w przycisk START</p>
+        <p>2.Wybierz kubek pod którym śądzisz ,że jest piłeczka</p>
+        <p>3.Po uzyskaniu wyniku, kliknij JESZCZE RAZ</p>
+        <p>4.Ponownie rozpocznij losowanie klikając START</p>
+    </div>
+    <h1>GRA W KUBKI</h1>
+    <section class="plansza">
+        <div class="box kubek1" data-now="1"><img src="zdj/kubek.png" alt=""></div>
+        <div class="box kubek2" data-now="2"><img src="zdj/kubek.png" alt=""></div>
+        <div class="box kubek3" data-now="3"><img src="zdj/kubek.png" alt=""></div>
+        <div class="ball"><img src="zdj/ball.png" alt=""></div>
+    </section>
+    <button class="start">START</button>
+    <button class="reset">JESZCZE RAZ</button>
+    <div class="win">Wygrałeś:</div>
+    <div class="lose">Przegrałeś:</div>
+    <div class="text"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
