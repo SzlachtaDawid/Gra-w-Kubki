@@ -33,7 +33,7 @@ function pick() {
         } else {
             ball.style.left = "80%"
         }
-        if (now == pccc) {
+        if (now === pccc) {
             console.log('WYGRAŁEŚ')
             text.textContent = 'WYGRAŁEŚ'
             text.style.color = 'blue'
